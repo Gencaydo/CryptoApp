@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 
@@ -17,13 +16,14 @@ namespace CryptoClient
                 {
                     Root cryptoData = JsonConvert.DeserializeObject<Root>(JsonData);
 
-                    string query = "INSERT INTO Crypto (Name, Icon, PriceandParity)";
-                    query += " VALUES (@Name, @Icon, @PriceandParity)";
+                    string query = "INSERT INTO Crypto (Name, Icon, PriceandParity, CreateDate)";
+                    query += " VALUES (@Name, @Icon, @PriceandParity, @CreateDate)";
                     sqlConnection.Open();
                     SqlCommand myCommand = new SqlCommand(query, sqlConnection);
                     myCommand.Parameters.AddWithValue("@Name", cryptoData.USD.ToString());
                     myCommand.Parameters.AddWithValue("@Icon","$");
                     myCommand.Parameters.AddWithValue("@PriceandParity", cryptoData.USD.alis.ToString() + "/" + cryptoData.USD.degisim.ToString());
+                    myCommand.Parameters.AddWithValue("@CreateDate", DateTime.Now);
                     myCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     return null;

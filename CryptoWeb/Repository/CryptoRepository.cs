@@ -29,6 +29,7 @@ namespace CryptoWeb.Repository
                     Name = row["Name"].ToString(),
                     Icon = row["Icon"].ToString(),
                     PriceandParity = row["PriceandParity"].ToString(),
+                    CreateDate = Convert.ToDateTime(row["CreateDate"]),
                 };
                 cryptodata.Add(crypto);
             }
@@ -38,7 +39,7 @@ namespace CryptoWeb.Repository
 
         private DataTable GetCryptoDataFromDb()
         {
-            var query = "SELECT Id, Name, Icon, PriceandParity FROM Crypto";
+            var query = "SELECT Id, Name, Icon, PriceandParity, CreateDate FROM Crypto";
             DataTable dataTable = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -34,6 +34,7 @@ function BindDataToGrid(data) {
 		tr.append(`<td>${data.name}</td>`);
 		tr.append(`<td>${data.icon}</td>`);
 		tr.append(`<td>${data.priceandParity}</td>`);
+		tr.append(`<td>${data.createDate}</td>`);
 		$('#tblCryptoData').append(tr);
 	});
 }
